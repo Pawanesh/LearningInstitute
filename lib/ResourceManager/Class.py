@@ -4,7 +4,8 @@ from collections import defaultdict
 
 class ClassQuery:
     def __init__(self):
-        self.id = None
+        self.classID = None
+        self.subjectID = None
 
 class Class:
     def __init__(self, config, logger, databaseManager, resourceManager):
@@ -48,9 +49,9 @@ class Class:
 
     def get(self, query):
         out = []
-        if query.id is not None:
-            if query.id in self.dict.keys():
-                classData = self.dict[query.id]
+        if query.classID is not None:
+            if query.classID in self.dict.keys():
+                classData = self.dict[query.classID]
                 out.append({
                     'ID' : classData[0],
                     'SubjectID' : classData[1],
@@ -60,9 +61,22 @@ class Class:
                     'Day' : classData[5],
                     'Name' : classData[6]
                 })
+        elif query.subjectID is not None:
+             for classID in self.dict.keys():
+                classData = self.dict[classID]
+                if classData[1] == query.subjectID:
+                    out.append({
+                        'ID' : classData[0],
+                        'SubjectID' : classData[1],
+                        'StartDate' : classData[2],
+                        'EndDate' : classData[3],
+                        'Time' : classData[4],
+                        'Day' : classData[5],
+                        'Name' : classData[6]
+                    })
         else:
-            for id in self.dict.keys():
-                classData = self.dict[id]
+            for classID in self.dict.keys():
+                classData = self.dict[classID]
                 out.append({
                     'ID' : classData[0],
                     'SubjectID' : classData[1],

@@ -14,10 +14,13 @@ class ClassHandler:
         try:
             queryParam = request.args
             self.logger.log().debug("queryParam: {}".format(queryParam))
-            id = Validator(self.config, self.logger).get(queryParam, 'id', int)  
-            self.logger.log().debug("id: {}".format(id))
+            classID = Validator(self.config, self.logger).get(queryParam, 'ClassID', int)  
+            self.logger.log().debug("ClassID: {}".format(classID))
+
+            subjectID = Validator(self.config, self.logger).get(queryParam, 'SubjectID', int)  
+            self.logger.log().debug("SubjectID: {}".format(subjectID))
             
-            classData = self.resourceManager.getClass(id)
+            classData = self.resourceManager.getClass(classID, subjectID)
 
             response = Response(json.dumps({'Class' : classData}), status=200, mimetype='application/json')
         

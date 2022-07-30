@@ -13,6 +13,10 @@ pip install Flask
 #Install flask_restful
 pip install flask_restful
 
+#Install requests
+pip install requests
+
+
 #Create empty django project
 django-admin startproject LIOnline
 
@@ -42,3 +46,10 @@ sqlite3 /Users/pawgupta0/Pawanesh/development/LearningInstitute/Database/sqlite/
 .schema Class
 
 ctrl + d -> quit
+
+#Run Online GUI service
+./script/runner.sh ./app/OnlineService/LIOnline/manage.py runserver 7000
+
+
+#Run flask query service
+./script/runner.sh ./app/QueryService/QueryService.py

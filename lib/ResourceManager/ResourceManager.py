@@ -26,7 +26,8 @@ class ResourceManager:
         return self.lookup.get(query)
 
     
-    def getClass(self, id):
+    def getClass(self, classID=None, subjectID=None):
         query = ClassQuery()
-        query.id = id
+        query.classID = classID
+        query.subjectID = subjectID
         return self.classData.get(query)

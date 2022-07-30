@@ -65,7 +65,7 @@ class Lookup(Resource):
         return LookupHandler(config, logger, resourceManager).post(request) 
 
 @api.route('/class', endpoint='class')
-@api.doc(params={'id': 'ClassID'})
+@api.doc(params={'ClassID': 'ClassID', 'SubjectID': 'SubjectID'})
 class Class(Resource):
     def get(self):
         return ClassHandler(config, logger, resourceManager).get(request) 
